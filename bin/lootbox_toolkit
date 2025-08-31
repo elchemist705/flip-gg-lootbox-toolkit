@@ -1,0 +1,417 @@
+#!/usr/bin/env python3
+"""
+Lootbox Probability Toolkit - Main Executable
+
+A comprehensive toolkit for designing, analyzing, and optimizing lootbox
+probability distributions with mathematical rigor.
+"""
+import os
+import sys
+import json
+import argparse
+from pathlib import Path
+import logging
+
+# Add src to path
+toolkit_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(toolkit_dir / "src"))
+sys.path.insert(0, str(toolkit_dir))
+
+try:
+    from lootbox_calculator import LootboxCalculator, Lootbox, LootboxItem, RarityTier
+except ImportError:
+    print("❌ Could not import lootbox calculator. Please check installation.")
+    sys.exit(1)
+
+# Global state file for CLI persistence
+STATE_FILE = toolkit_dir / "data" / "cli_state.json"
+
+class ToolkitCLI:
+    """Enhanced CLI with persistent state"""
+    
+    def __init__(self):
+        self.calculator = LootboxCalculator()
+        self.current_lootbox = None
+        self.load_state()
+        
+        # Setup logging
+        log_dir = toolkit_dir / "logs"
+        log_dir.mkdir(exist_ok=True)
+        
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(log_dir / "toolkit.log"),
+                logging.StreamHandler()
+            ]
+        )
+        self.logger = logging.getLogger(__name__)
+    
+    def load_state(self):
+        """Load CLI state from file"""
+        try:
+            if STATE_FILE.exists():
+                with open(STATE_FILE, 'r') as f:
+                    state = json.load(f)
+                
+                if 'current_lootbox' in state and state['current_lootbox']:
+                    self.current_lootbox = self.dict_to_lootbox(state['current_lootbox'])
+                    print(f"✅ Restored session: {self.current_lootbox.name}")
+        except Exception as e:
+            print(f"⚠️ Could not restore previous session: {str(e)}")
+    
+    def save_state(self):
+        """Save CLI state to file"""
+        try:
+            STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+            
+            state = {
+                'current_lootbox': self.lootbox_to_dict(self.current_lootbox) if self.current_lootbox else None
+            }
+            
+            with open(STATE_FILE, 'w') as f:
+                json.dump(state, f, indent=2)
+        except Exception as e:
+            print(f"⚠️ Could not save session: {str(e)}")
+    
+    def lootbox_to_dict(self, lootbox):
+        """Convert lootbox to dictionary"""
+        if not lootbox:
+            return None
+        
+        return {
+            "name": lootbox.name,
+            "description": lootbox.description,
+            "cost": lootbox.cost,
+            "items": [
+                {
+                    "name": item.name,
+                    "value": item.value,
+                    "rarity": item.rarity.value,
+                    "probability": item.probability,
+                    "description": item.description
+                }
+                for item in lootbox.items
+            ]
+        }
+    
+    def dict_to_lootbox(self, data):
+        """Convert dictionary to lootbox"""
+        if not data:
+            return None
+        
+        items = []
+        for item_data in data['items']:
+            items.append(LootboxItem(
+                name=item_data['name'],
+                value=item_data['value'],
+                rarity=RarityTier(item_data['rarity']),
+                probability=item_data['probability'],
+                description=item_data.get('description', '')
+            ))
+        
+        return Lootbox(
+            name=data['name'],
+            cost=data['cost'],
+            items=items,
+            description=data.get('description', '')
+        )
+
+def main():
+    """Main CLI function"""
+    parser = argparse.ArgumentParser(
+        description="🎲 Lootbox Probability Toolkit",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    
+    subparsers = parser.add_subparsers(dest='command', help='Available commands')
+    
+    # Create command
+    create_parser = subparsers.add_parser('create', help='Create new lootbox')
+    create_parser.add_argument('--name', required=True, help='Lootbox name')
+    create_parser.add_argument('--cost', type=float, required=True, help='Lootbox cost ($0.50-$1000.00)')
+    create_parser.add_argument('--template', choices=['balanced', 'csgo', 'high_variance', 'low_variance', 'whale_tier', 'luxury_vault', 'elite_supreme'],
+                             help='Use predefined template')
+    
+    # Analyze command
+    analyze_parser = subparsers.add_parser('analyze', help='Analyze current lootbox')
+    analyze_parser.add_argument('--detailed', action='store_true', help='Show detailed analysis')
+    
+    # Simulate command
+    simulate_parser = subparsers.add_parser('simulate', help='Run Monte Carlo simulation')
+    simulate_parser.add_argument('--simulations', type=int, default=10000, help='Number of simulations')
+    simulate_parser.add_argument('--seed', type=int, help='Random seed')
+    
+    # Optimize command
+    optimize_parser = subparsers.add_parser('optimize', help='Optimize probabilities')
+    optimize_parser.add_argument('--house-edge', type=float, default=0.15, help='Target house edge')
+    
+    # Save/Load commands
+    save_parser = subparsers.add_parser('save', help='Save current lootbox')
+    save_parser.add_argument('--file', required=True, help='Output file path')
+    
+    load_parser = subparsers.add_parser('load', help='Load lootbox configuration')
+    load_parser.add_argument('--file', required=True, help='Input file path')
+    
+    # Show command
+    show_parser = subparsers.add_parser('show', help='Show current lootbox')
+    
+    # Interactive command
+    interactive_parser = subparsers.add_parser('interactive', help='Run interactive designer')
+    
+    # Quick command
+    quick_parser = subparsers.add_parser('quick', help='Quick analysis of cost range')
+    
+    args = parser.parse_args()
+    
+    if not args.command:
+        parser.print_help()
+        return
+    
+    cli = ToolkitCLI()
+    
+    try:
+        if args.command == 'create':
+            create_lootbox(cli, args)
+        elif args.command == 'analyze':
+            analyze_lootbox(cli, args)
+        elif args.command == 'simulate':
+            simulate_lootbox(cli, args)
+        elif args.command == 'optimize':
+            optimize_lootbox(cli, args)
+        elif args.command == 'save':
+            save_lootbox(cli, args)
+        elif args.command == 'load':
+            load_lootbox(cli, args)
+        elif args.command == 'show':
+            show_lootbox(cli, args)
+        elif args.command == 'interactive':
+            run_interactive(cli)
+        elif args.command == 'quick':
+            quick_analysis(cli)
+        
+        # Save state after each command
+        cli.save_state()
+        
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+        cli.logger.error(f"Command failed: {str(e)}")
+
+def create_lootbox(cli, args):
+    """Create a new lootbox"""
+    if args.template:
+        cli.current_lootbox = create_from_template(args.template, args.cost)
+        print(f"✅ Created '{args.template}' template lootbox: {args.name}")
+    else:
+        # Interactive creation would go here
+        print("Interactive lootbox creation not yet implemented in CLI mode.")
+        print("Use 'interactive' command or create from template.")
+
+def create_from_template(template_name, cost):
+    """Create lootbox from template"""
+    templates = {
+        'balanced': [
+            LootboxItem("Common Coins", cost * 0.10, RarityTier.COMMON, 0.50),
+            LootboxItem("Silver Token", cost * 0.30, RarityTier.UNCOMMON, 0.25),
+            LootboxItem("Gold Gem", cost * 0.75, RarityTier.RARE, 0.15),
+            LootboxItem("Diamond Ring", cost * 2.00, RarityTier.EPIC, 0.08),
+            LootboxItem("Legendary Item", cost * 6.00, RarityTier.LEGENDARY, 0.02)
+        ],
+        'high_variance': [
+            LootboxItem("Almost Nothing", cost * 0.05, RarityTier.COMMON, 0.70),
+            LootboxItem("Small Prize", cost * 0.25, RarityTier.UNCOMMON, 0.20),
+            LootboxItem("Medium Prize", cost * 0.90, RarityTier.RARE, 0.08),
+            LootboxItem("Big Win", cost * 5.00, RarityTier.EPIC, 0.015),
+            LootboxItem("Mega Jackpot", cost * 25.00, RarityTier.LEGENDARY, 0.005)
+        ],
+        'whale_tier': [
+            LootboxItem("Participation Token", cost * 0.05, RarityTier.COMMON, 0.70),
+            LootboxItem("Small Bonus", cost * 0.20, RarityTier.UNCOMMON, 0.20),
+            LootboxItem("Decent Prize", cost * 0.80, RarityTier.RARE, 0.08),
+            LootboxItem("Big Win", cost * 3.00, RarityTier.EPIC, 0.015),
+            LootboxItem("Massive Jackpot", cost * 15.00, RarityTier.LEGENDARY, 0.004),
+            LootboxItem("Ultimate Prize", min(cost * 50.00, 1000.0), RarityTier.MYTHIC, 0.001)
+        ],
+        'luxury_vault': [
+            LootboxItem("Consolation", cost * 0.03, RarityTier.COMMON, 0.75),
+            LootboxItem("Minor Prize", cost * 0.15, RarityTier.UNCOMMON, 0.18),
+            LootboxItem("Solid Win", cost * 0.70, RarityTier.RARE, 0.05),
+            LootboxItem("Major Prize", cost * 2.50, RarityTier.EPIC, 0.015),
+            LootboxItem("Luxury Item", cost * 8.00, RarityTier.LEGENDARY, 0.004),
+            LootboxItem("Supreme Treasure", min(cost * 25.00, 1000.0), RarityTier.MYTHIC, 0.001)
+        ],
+        'elite_supreme': [
+            LootboxItem("Base Reward", cost * 0.02, RarityTier.COMMON, 0.80),
+            LootboxItem("Token Prize", cost * 0.10, RarityTier.UNCOMMON, 0.15),
+            LootboxItem("Premium Reward", cost * 0.50, RarityTier.RARE, 0.04),
+            LootboxItem("Elite Prize", cost * 2.00, RarityTier.EPIC, 0.008),
+            LootboxItem("Supreme Jackpot", cost * 6.00, RarityTier.LEGENDARY, 0.0015),
+            LootboxItem("Legendary Treasure", min(cost * 20.00, 1000.0), RarityTier.MYTHIC, 0.0005)
+        ]
+    }
+    
+    if template_name not in templates:
+        raise ValueError(f"Unknown template: {template_name}")
+    
+    return Lootbox(
+        name=f"{template_name.title()} Box ${cost:.2f}",
+        cost=cost,
+        items=templates[template_name],
+        description=f"Generated from {template_name} template"
+    )
+
+def analyze_lootbox(cli, args):
+    """Analyze current lootbox"""
+    if not cli.current_lootbox:
+        print("❌ No lootbox loaded. Create or load a lootbox first.")
+        return
+    
+    analysis = cli.calculator.analyze_lootbox(cli.current_lootbox)
+    
+    print(f"\n🎲 ANALYSIS: {cli.current_lootbox.name}")
+    print("="*60)
+    print(f"Cost:              ${cli.current_lootbox.cost:.2f}")
+    print(f"Expected Value:    ${analysis['expected_value']:.4f}")
+    print(f"House Edge:        {analysis['house_edge']*100:.2f}%")
+    print(f"Player Rating:     {analysis['player_rating']}")
+    print(f"Break Even Chance: {analysis['break_even_probability']*100:.2f}%")
+    
+    if args.detailed:
+        print(f"\nDetailed Metrics:")
+        print(f"Standard Deviation: ${analysis['std_deviation']:.4f}")
+        print(f"Risk Level:        {analysis['risk_level']}")
+        print(f"10%+ Profit Chance: {analysis['profit_10_probability']*100:.2f}%")
+        print(f"50%+ Profit Chance: {analysis['profit_50_probability']*100:.2f}%")
+
+def simulate_lootbox(cli, args):
+    """Run Monte Carlo simulation"""
+    if not cli.current_lootbox:
+        print("❌ No lootbox loaded. Create or load a lootbox first.")
+        return
+    
+    if args.seed:
+        random.seed(args.seed)
+    
+    print(f"🎲 Running {args.simulations:,} simulations...")
+    sim_results = cli.calculator.simulate_openings(cli.current_lootbox, args.simulations)
+    
+    print(f"\nSimulation Results:")
+    print(f"Average Value:     ${sim_results['average_value']:.4f}")
+    print(f"ROI:              {sim_results['roi_percent']:.2f}%")
+    print(f"Win Rate:         {sim_results['win_rate_percent']:.2f}%")
+    print(f"House Edge:       {sim_results['house_edge_actual']*100:.2f}%")
+
+def optimize_lootbox(cli, args):
+    """Optimize lootbox probabilities"""
+    if not cli.current_lootbox:
+        print("❌ No lootbox loaded. Create or load a lootbox first.")
+        return
+    
+    print(f"🔧 Optimizing for {args.house_edge*100:.1f}% house edge...")
+    optimized = cli.calculator.optimize_probabilities(cli.current_lootbox, args.house_edge)
+    
+    print(f"✅ Optimization complete!")
+    print(f"New House Edge: {optimized.get_house_edge()*100:.2f}%")
+    print(f"New Expected Value: ${optimized.get_expected_value():.4f}")
+    
+    cli.current_lootbox = optimized
+
+def save_lootbox(cli, args):
+    """Save current lootbox"""
+    if not cli.current_lootbox:
+        print("❌ No lootbox loaded. Create or load a lootbox first.")
+        return
+    
+    filepath = Path(args.file)
+    if not filepath.suffix:
+        filepath = filepath.with_suffix('.json')
+    
+    # Ensure outputs directory
+    if not filepath.is_absolute():
+        filepath = toolkit_dir / "outputs" / filepath
+    
+    filepath.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(filepath, 'w') as f:
+        json.dump(cli.lootbox_to_dict(cli.current_lootbox), f, indent=2)
+    
+    print(f"✅ Saved to: {filepath}")
+
+def load_lootbox(cli, args):
+    """Load lootbox configuration"""
+    filepath = Path(args.file)
+    
+    # Try different locations
+    search_paths = [
+        filepath,
+        toolkit_dir / "outputs" / filepath,
+        toolkit_dir / "examples" / filepath,
+        toolkit_dir / "configs" / filepath
+    ]
+    
+    for path in search_paths:
+        if path.exists():
+            with open(path, 'r') as f:
+                data = json.load(f)
+            
+            cli.current_lootbox = cli.dict_to_lootbox(data)
+            print(f"✅ Loaded: {cli.current_lootbox.name} from {path}")
+            return
+    
+    print(f"❌ File not found: {args.file}")
+
+def show_lootbox(cli, args):
+    """Show current lootbox configuration"""
+    if not cli.current_lootbox:
+        print("❌ No lootbox loaded. Create or load a lootbox first.")
+        return
+    
+    lootbox = cli.current_lootbox
+    print(f"\n🎲 {lootbox.name}")
+    print("="*60)
+    print(f"Cost: ${lootbox.cost:.2f}")
+    print(f"Items: {len(lootbox.items)}")
+    if lootbox.description:
+        print(f"Description: {lootbox.description}")
+    
+    print(f"\nItem Configuration:")
+    print(f"{'Name':<18} {'Value':<8} {'Rarity':<10} {'Probability'}")
+    print("-" * 55)
+    
+    for item in lootbox.items:
+        print(f"{item.name:<18} ${item.value:<7.2f} {item.rarity.value.title():<10} {item.probability*100:>6.2f}%")
+
+def run_interactive(cli):
+    """Run interactive designer"""
+    import subprocess
+    script_path = toolkit_dir / "bin" / "flip_gg_interactive.py"
+    subprocess.run([sys.executable, str(script_path)])
+
+def quick_analysis(cli):
+    """Quick cost range analysis"""
+    print("🎲 QUICK COST RANGE ANALYSIS")
+    print("="*50)
+    
+    costs = [0.75, 1.50, 2.50, 3.75]
+    
+    print(f"{'Cost':<8} {'Expected Value':<15} {'House Edge':<12} {'Player Rating'}")
+    print("-" * 60)
+    
+    for cost in costs:
+        # Create simple lootbox for analysis
+        items = [
+            LootboxItem("Low Value", cost * 0.10, RarityTier.COMMON, 0.50),
+            LootboxItem("Medium Value", cost * 0.40, RarityTier.UNCOMMON, 0.30),
+            LootboxItem("High Value", cost * 1.50, RarityTier.RARE, 0.15),
+            LootboxItem("Jackpot", cost * 8.00, RarityTier.EPIC, 0.05)
+        ]
+        
+        lootbox = Lootbox(f"Quick ${cost:.2f}", cost, items)
+        analysis = cli.calculator.analyze_lootbox(lootbox)
+        
+        print(f"${cost:<7.2f} ${analysis['expected_value']:<14.4f} "
+              f"{analysis['house_edge']*100:<11.2f}% {analysis['player_rating']}")
+
+if __name__ == "__main__":
+    main()

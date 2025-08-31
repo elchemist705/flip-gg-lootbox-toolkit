@@ -1,0 +1,49 @@
+{
+  "name": "High Roller's Gamble",
+  "description": "High variance lootbox with extreme odds - big wins or big losses",
+  "cost": 3.50,
+  "items": [
+    {
+      "name": "Empty Box",
+      "value": 0.01,
+      "rarity": "common",
+      "probability": 0.70,
+      "description": "Unfortunately, you got almost nothing"
+    },
+    {
+      "name": "Consolation Prize",
+      "value": 0.50,
+      "rarity": "uncommon",
+      "probability": 0.20,
+      "description": "A small consolation for your loss"
+    },
+    {
+      "name": "Decent Win",
+      "value": 3.00,
+      "rarity": "rare",
+      "probability": 0.08,
+      "description": "Almost covers the cost of the box"
+    },
+    {
+      "name": "Big Win",
+      "value": 15.00,
+      "rarity": "epic", 
+      "probability": 0.015,
+      "description": "A substantial win worth multiple boxes"
+    },
+    {
+      "name": "Mega Jackpot",
+      "value": 200.00,
+      "rarity": "legendary",
+      "probability": 0.004,
+      "description": "Life-changing jackpot - extremely rare"
+    },
+    {
+      "name": "Ultimate Prize",
+      "value": 1000.00,
+      "rarity": "mythic",
+      "probability": 0.001,
+      "description": "The ultimate prize - one in a thousand chance"
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "templates": {
+    "budget_friendly": {
+      "name": "Budget Friendly Box",
+      "description": "Low-cost lootbox with decent player value",
+      "base_cost": 0.75,
+      "house_edge_target": 0.12,
+      "variance_level": "medium",
+      "items": [
+        {
+          "name": "Bronze Tokens",
+          "value_multiplier": 0.15,
+          "rarity": "common",
+          "base_probability": 0.45
+        },
+        {
+          "name": "Silver Coins",
+          "value_multiplier": 0.40,
+          "rarity": "uncommon", 
+          "base_probability": 0.30
+        },
+        {
+          "name": "Gold Piece",
+          "value_multiplier": 1.10,
+          "rarity": "rare",
+          "base_probability": 0.20
+        },
+        {
+          "name": "Platinum Bar",
+          "value_multiplier": 4.00,
+          "rarity": "epic",
+          "base_probability": 0.05
+        }
+      ]
+    },
+    "balanced_premium": {
+      "name": "Balanced Premium Box",
+      "description": "Well-balanced lootbox for mainstream appeal",
+      "base_cost": 2.00,
+      "house_edge_target": 0.15,
+      "variance_level": "medium",
+      "items": [
+        {
+          "name": "Common Reward",
+          "value_multiplier": 0.12,
+          "rarity": "common",
+          "base_probability": 0.40
+        },
+        {
+          "name": "Uncommon Treasure",
+          "value_multiplier": 0.35,
+          "rarity": "uncommon",
+          "base_probability": 0.28
+        },
+        {
+          "name": "Rare Artifact",
+          "value_multiplier": 0.85,
+          "rarity": "rare",
+          "base_probability": 0.20
+        },
+        {
+          "name": "Epic Gem",
+          "value_multiplier": 3.50,
+          "rarity": "epic",
+          "base_probability": 0.10
+        },
+        {
+          "name": "Legendary Prize",
+          "value_multiplier": 15.00,
+          "rarity": "legendary",
+          "base_probability": 0.02
+        }
+      ]
+    },
+    "high_roller": {
+      "name": "High Roller's Paradise",
+      "description": "High-stakes lootbox for big spenders",
+      "base_cost": 3.50,
+      "house_edge_target": 0.18,
+      "variance_level": "high",
+      "items": [
+        {
+          "name": "Consolation Prize",
+          "value_multiplier": 0.08,
+          "rarity": "common",
+          "base_probability": 0.60
+        },
+        {
+          "name": "Small Win",
+          "value_multiplier": 0.30,
+          "rarity": "uncommon",
+          "base_probability": 0.25
+        },
+        {
+          "name": "Good Win", 
+          "value_multiplier": 1.20,
+          "rarity": "rare",
+          "base_probability": 0.12
+        },
+        {
+          "name": "Major Win",
+          "value_multiplier": 6.00,
+          "rarity": "epic",
+          "base_probability": 0.025
+        },
+        {
+          "name": "Mega Jackpot",
+          "value_multiplier": 30.00,
+          "rarity": "legendary",
+          "base_probability": 0.005
+        }
+      ]
+    },
+    "csgo_style": {
+      "name": "CS:GO Style Case",
+      "description": "Industry-standard CS:GO weapon case distribution",
+      "base_cost": 2.50,
+      "house_edge_target": 0.90,
+      "variance_level": "very_high",
+      "items": [
+        {
+          "name": "Consumer Grade",
+          "value_multiplier": 0.02,
+          "rarity": "common",
+          "base_probability": 0.7992
+        },
+        {
+          "name": "Industrial Grade",
+          "value_multiplier": 0.06,
+          "rarity": "uncommon",
+          "base_probability": 0.1598
+        },
+        {
+          "name": "Mil-Spec",
+          "value_multiplier": 0.30,
+          "rarity": "rare",
+          "base_probability": 0.032
+        },
+        {
+          "name": "Restricted",
+          "value_multiplier": 1.40,
+          "rarity": "epic",
+          "base_probability": 0.0064
+        },
+        {
+          "name": "Classified",
+          "value_multiplier": 6.00,
+          "rarity": "legendary",
+          "base_probability": 0.0013
+        },
+        {
+          "name": "Covert",
+          "value_multiplier": 30.00,
+          "rarity": "mythic",
+          "base_probability": 0.0013
+        }
+      ]
+    },
+    "whale_tier": {
+      "name": "Whale Tier Supreme",
+      "description": "Ultra high-value lootbox for serious gamblers ($50-200 range)",
+      "base_cost": 100.00,
+      "house_edge_target": 0.15,
+      "variance_level": "extreme",
+      "items": [
+        {
+          "name": "Participation Token",
+          "value_multiplier": 0.05,
+          "rarity": "common",
+          "base_probability": 0.70
+        },
+        {
+          "name": "Small Bonus",
+          "value_multiplier": 0.20,
+          "rarity": "uncommon",
+          "base_probability": 0.20
+        },
+        {
+          "name": "Decent Prize",
+          "value_multiplier": 0.80,
+          "rarity": "rare",
+          "base_probability": 0.08
+        },
+        {
+          "name": "Big Win",
+          "value_multiplier": 3.00,
+          "rarity": "epic",
+          "base_probability": 0.015
+        },
+        {
+          "name": "Massive Jackpot",
+          "value_multiplier": 15.00,
+          "rarity": "legendary",
+          "base_probability": 0.004
+        },
+        {
+          "name": "Ultimate Prize",
+          "value_multiplier": 50.00,
+          "rarity": "mythic",
+          "base_probability": 0.001
+        }
+      ]
+    },
+    "luxury_vault": {
+      "name": "Luxury Vault",
+      "description": "Premium high-value lootbox for elite players ($200-500 range)",
+      "base_cost": 250.00,
+      "house_edge_target": 0.12,
+      "variance_level": "extreme",
+      "items": [
+        {
+          "name": "Consolation",
+          "value_multiplier": 0.03,
+          "rarity": "common",
+          "base_probability": 0.75
+        },
+        {
+          "name": "Minor Prize",
+          "value_multiplier": 0.15,
+          "rarity": "uncommon",
+          "base_probability": 0.18
+        },
+        {
+          "name": "Solid Win",
+          "value_multiplier": 0.70,
+          "rarity": "rare",
+          "base_probability": 0.05
+        },
+        {
+          "name": "Major Prize",
+          "value_multiplier": 2.50,
+          "rarity": "epic",
+          "base_probability": 0.015
+        },
+        {
+          "name": "Luxury Item",
+          "value_multiplier": 8.00,
+          "rarity": "legendary",
+          "base_probability": 0.004
+        },
+        {
+          "name": "Supreme Treasure",
+          "value_multiplier": 25.00,
+          "rarity": "mythic",
+          "base_probability": 0.001
+        }
+      ]
+    },
+    "elite_supreme": {
+      "name": "Elite Supreme Vault",
+      "description": "Ultra-premium lootbox for highest tier players ($500-1000 range)",
+      "base_cost": 750.00,
+      "house_edge_target": 0.10,
+      "variance_level": "extreme",
+      "items": [
+        {
+          "name": "Base Reward",
+          "value_multiplier": 0.02,
+          "rarity": "common",
+          "base_probability": 0.80
+        },
+        {
+          "name": "Token Prize",
+          "value_multiplier": 0.10,
+          "rarity": "uncommon",
+          "base_probability": 0.15
+        },
+        {
+          "name": "Premium Reward",
+          "value_multiplier": 0.50,
+          "rarity": "rare",
+          "base_probability": 0.04
+        },
+        {
+          "name": "Elite Prize",
+          "value_multiplier": 2.00,
+          "rarity": "epic",
+          "base_probability": 0.008
+        },
+        {
+          "name": "Supreme Jackpot",
+          "value_multiplier": 6.00,
+          "rarity": "legendary",
+          "base_probability": 0.0015
+        },
+        {
+          "name": "Legendary Treasure",
+          "value_multiplier": 20.00,
+          "rarity": "mythic",
+          "base_probability": 0.0005
+        }
+      ]
+    }
+  },
+  "rarity_colors": {
+    "common": "#808080",
+    "uncommon": "#1EFF00", 
+    "rare": "#0070DD",
+    "epic": "#A335EE",
+    "legendary": "#FF8000",
+    "mythic": "#E6CC80"
+  },
+  "default_constraints": {
+    "min_cost": 0.50,
+    "max_cost": 1000.00,
+    "min_house_edge": 0.05,
+    "max_house_edge": 0.50,
+    "min_items": 3,
+    "max_items": 10
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Balanced Premium Box",
+  "description": "A well-balanced lootbox optimized for $2.00 cost with fair player value",
+  "cost": 2.00,
+  "items": [
+    {
+      "name": "Bronze Coins",
+      "value": 0.15,
+      "rarity": "common",
+      "probability": 0.45,
+      "description": "Basic currency for small purchases"
+    },
+    {
+      "name": "Silver Token",
+      "value": 0.60,
+      "rarity": "uncommon", 
+      "probability": 0.25,
+      "description": "Mid-tier currency with decent value"
+    },
+    {
+      "name": "Gold Bar",
+      "value": 1.80,
+      "rarity": "rare",
+      "probability": 0.18,
+      "description": "Valuable gold bar worth almost the box cost"
+    },
+    {
+      "name": "Platinum Ingot",
+      "value": 5.00,
+      "rarity": "epic",
+      "probability": 0.10,
+      "description": "High-value platinum worth more than box cost"
+    },
+    {
+      "name": "Diamond Crystal",
+      "value": 25.00,
+      "rarity": "legendary",
+      "probability": 0.02,
+      "description": "Rare diamond crystal - major jackpot item"
+    }
+  ]
+}
