@@ -35,7 +35,7 @@ cd lootbox_toolkit
 ## 🎮 Perfect for Flip.gg
 
 **Specifically optimized for your requirements:**
-- ✅ Cost range: $0.50 - $4.00
+- ✅ Cost range: $0.50 - $1000
 - ✅ Mixed high/low value items  
 - ✅ Optimal probability distributions
 - ✅ Ready-to-use configurations
