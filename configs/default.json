@@ -1,0 +1,8 @@
+{
+  "default_cost": 2.00,
+  "default_house_edge": 0.15,
+  "default_simulations": 10000,
+  "output_format": "json",
+  "auto_save": true,
+  "precision": 4
+}

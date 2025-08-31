@@ -1,0 +1,42 @@
+{
+  "name": "Flip.gg Lootbox $2.50 (Optimized)",
+  "description": "Optimized for 15.0% house edge",
+  "cost": 2.5,
+  "items": [
+    {
+      "name": "Small Coins",
+      "value": 0.2,
+      "rarity": "common",
+      "probability": 0.4747857498671178,
+      "description": "Basic coins with minimal value"
+    },
+    {
+      "name": "Token Bundle",
+      "value": 0.625,
+      "rarity": "uncommon",
+      "probability": 0.2373928749335589,
+      "description": "Decent token bundle"
+    },
+    {
+      "name": "Premium Item",
+      "value": 2.0,
+      "rarity": "rare",
+      "probability": 0.14243572496013546,
+      "description": "Premium item worth most of box cost"
+    },
+    {
+      "name": "Valuable Prize",
+      "value": 7.5,
+      "rarity": "epic",
+      "probability": 0.11630852019135024,
+      "description": "High-value prize worth 3x the box"
+    },
+    {
+      "name": "Mega Jackpot",
+      "value": 25.0,
+      "rarity": "legendary",
+      "probability": 0.02907713004783756,
+      "description": "Massive jackpot - up to $1000!"
+    }
+  ]
+}

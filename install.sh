@@ -1,10 +1,8 @@
 #!/bin/bash
-"""
-Lootbox Toolkit Installation Script
-
-Automatically sets up the complete lootbox probability toolkit
-with all dependencies and configurations.
-"""
+# Lootbox Toolkit Installation Script
+#
+# Automatically sets up the complete lootbox probability toolkit
+# with all dependencies and configurations.
 
 set -e  # Exit on any error
 
