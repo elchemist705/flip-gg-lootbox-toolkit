@@ -35,7 +35,7 @@ cd lootbox_toolkit
 ## 🎮 Perfect for Flip.gg
 
 **Specifically optimized for your requirements:**
-- ✅ Cost range: $0.50 - $4.00
+- ✅ Cost range: $0.50 - $1000
 - ✅ Mixed high/low value items  
 - ✅ Optimal probability distributions
 - ✅ Ready-to-use configurations
@@ -54,7 +54,7 @@ Break Even Chance: 28.5%
 
 ### 1. Main Calculator (`./lootbox-calc`)
 Comprehensive analysis tool with:
-- Cost range comparison ($0.50-$4.00)
+- Cost range comparison ($0.50-$1000)
 - Mathematical optimization
 - Monte Carlo validation (25,000+ simulations)
 - Automatic configuration generation
@@ -160,7 +160,7 @@ Pre-built industry patterns:
 - **Budget**: Cost-effective with good player value
 
 ### Optimization Constraints
-- Cost range limits ($0.50-$4.00)
+- Cost range limits ($0.50-$1000)
 - House edge targets (5%-50%)
 - Rarity tier probability bounds
 - Player satisfaction thresholds
