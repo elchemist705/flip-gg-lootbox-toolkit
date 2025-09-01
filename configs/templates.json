@@ -290,6 +290,162 @@
           "base_probability": 0.0005
         }
       ]
+    },
+    "community_expanded": {
+      "name": "Community Expanded Box",
+      "description": "Community-focused lootbox with 10+ items for maximum variety",
+      "base_cost": 1.50,
+      "house_edge_target": 0.15,
+      "variance_level": "medium_high",
+      "items": [
+        {
+          "name": "Dust Coins",
+          "value_multiplier": 0.08,
+          "rarity": "common",
+          "base_probability": 0.35
+        },
+        {
+          "name": "Small Tokens",
+          "value_multiplier": 0.20,
+          "rarity": "common",
+          "base_probability": 0.25
+        },
+        {
+          "name": "Token Bundle",
+          "value_multiplier": 0.40,
+          "rarity": "uncommon",
+          "base_probability": 0.18
+        },
+        {
+          "name": "Coin Pack",
+          "value_multiplier": 0.70,
+          "rarity": "uncommon",
+          "base_probability": 0.12
+        },
+        {
+          "name": "Silver Prize",
+          "value_multiplier": 1.20,
+          "rarity": "rare",
+          "base_probability": 0.06
+        },
+        {
+          "name": "Gold Prize",
+          "value_multiplier": 2.00,
+          "rarity": "rare",
+          "base_probability": 0.025
+        },
+        {
+          "name": "Premium Win",
+          "value_multiplier": 4.50,
+          "rarity": "epic",
+          "base_probability": 0.012
+        },
+        {
+          "name": "Major Jackpot",
+          "value_multiplier": 9.00,
+          "rarity": "epic",
+          "base_probability": 0.005
+        },
+        {
+          "name": "Elite Jackpot",
+          "value_multiplier": 20.00,
+          "rarity": "legendary",
+          "base_probability": 0.002
+        },
+        {
+          "name": "Supreme Prize",
+          "value_multiplier": 50.00,
+          "rarity": "legendary",
+          "base_probability": 0.0008
+        },
+        {
+          "name": "Ultimate Treasure",
+          "value_multiplier": 100.00,
+          "rarity": "mythic",
+          "base_probability": 0.0002
+        }
+      ]
+    },
+    "mega_variety": {
+      "name": "Mega Variety Community Box",
+      "description": "Maximum variety community box with 12 different prize tiers",
+      "base_cost": 2.50,
+      "house_edge_target": 0.18,
+      "variance_level": "high",
+      "items": [
+        {
+          "name": "Dust",
+          "value_multiplier": 0.05,
+          "rarity": "common",
+          "base_probability": 0.30
+        },
+        {
+          "name": "Scraps",
+          "value_multiplier": 0.12,
+          "rarity": "common",
+          "base_probability": 0.25
+        },
+        {
+          "name": "Small Coins",
+          "value_multiplier": 0.25,
+          "rarity": "uncommon",
+          "base_probability": 0.20
+        },
+        {
+          "name": "Token Pack",
+          "value_multiplier": 0.45,
+          "rarity": "uncommon",
+          "base_probability": 0.12
+        },
+        {
+          "name": "Coin Bundle",
+          "value_multiplier": 0.80,
+          "rarity": "rare",
+          "base_probability": 0.08
+        },
+        {
+          "name": "Silver Prize",
+          "value_multiplier": 1.40,
+          "rarity": "rare",
+          "base_probability": 0.03
+        },
+        {
+          "name": "Gold Prize",
+          "value_multiplier": 2.50,
+          "rarity": "epic",
+          "base_probability": 0.015
+        },
+        {
+          "name": "Premium Win",
+          "value_multiplier": 5.00,
+          "rarity": "epic",
+          "base_probability": 0.008
+        },
+        {
+          "name": "Major Jackpot",
+          "value_multiplier": 10.00,
+          "rarity": "legendary",
+          "base_probability": 0.003
+        },
+        {
+          "name": "Elite Jackpot",
+          "value_multiplier": 25.00,
+          "rarity": "legendary",
+          "base_probability": 0.001
+        },
+        {
+          "name": "Supreme Treasure",
+          "value_multiplier": 60.00,
+          "rarity": "mythic",
+          "base_probability": 0.0004
+        },
+        {
+          "name": "Ultimate Fortune",
+          "value_multiplier": 150.00,
+          "rarity": "mythic",
+          "base_probability": 0.0001
+        }
+      ]
     }
   },
   "rarity_colors": {
@@ -306,6 +462,12 @@
     "min_house_edge": 0.05,
     "max_house_edge": 0.50,
     "min_items": 3,
-    "max_items": 10
+    "max_items": 15,
+    "recommended_items": {
+      "low_variance": 8,
+      "medium_variance": 9,
+      "high_variance": 12,
+      "community_standard": 10
+    }
   }
 }
