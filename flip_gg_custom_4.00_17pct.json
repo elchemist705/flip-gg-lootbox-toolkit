@@ -1,0 +1,42 @@
+{
+  "name": "Custom Flip.gg Box $4.00 (Optimized)",
+  "description": "Optimized for 17.0% house edge",
+  "cost": 4.0,
+  "items": [
+    {
+      "name": "Almost Nothing",
+      "value": 0.2,
+      "rarity": "common",
+      "probability": 0.6345831565233448,
+      "description": ""
+    },
+    {
+      "name": "Small Win",
+      "value": 1.2,
+      "rarity": "uncommon",
+      "probability": 0.19525635585333695,
+      "description": ""
+    },
+    {
+      "name": "Decent Win",
+      "value": 3.6,
+      "rarity": "rare",
+      "probability": 0.09762817792666847,
+      "description": ""
+    },
+    {
+      "name": "Big Win",
+      "value": 20.0,
+      "rarity": "epic",
+      "probability": 0.05802584775731977,
+      "description": ""
+    },
+    {
+      "name": "Mega Jackpot",
+      "value": 100.0,
+      "rarity": "legendary",
+      "probability": 0.014506461939329942,
+      "description": ""
+    }
+  ]
+}

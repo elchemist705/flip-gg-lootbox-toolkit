@@ -1,0 +1,42 @@
+{
+  "name": "Custom Flip.gg Box $0.50 (Optimized)",
+  "description": "Optimized for 17.0% house edge",
+  "cost": 0.5,
+  "items": [
+    {
+      "name": "Basic Item",
+      "value": 0.075,
+      "rarity": "common",
+      "probability": 0.4289649042197795,
+      "description": ""
+    },
+    {
+      "name": "Decent Item",
+      "value": 0.225,
+      "rarity": "uncommon",
+      "probability": 0.2859766028131864,
+      "description": ""
+    },
+    {
+      "name": "Good Item",
+      "value": 0.55,
+      "rarity": "rare",
+      "probability": 0.20524211493626457,
+      "description": ""
+    },
+    {
+      "name": "Excellent Item",
+      "value": 2.0,
+      "rarity": "epic",
+      "probability": 0.0684140383120882,
+      "description": ""
+    },
+    {
+      "name": "Legendary Item",
+      "value": 6.0,
+      "rarity": "legendary",
+      "probability": 0.011402339718681362,
+      "description": ""
+    }
+  ]
+}
