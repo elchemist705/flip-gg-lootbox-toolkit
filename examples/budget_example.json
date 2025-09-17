@@ -1,0 +1,35 @@
+{
+  "name": "Budget Box",
+  "description": "Budget-friendly lootbox with good player value",
+  "cost": 0.75,
+  "items": [
+    {
+      "name": "Small Prize",
+      "value": 0.15,
+      "rarity": "common",
+      "probability": 0.5,
+      "description": null
+    },
+    {
+      "name": "Medium Prize",
+      "value": 0.45,
+      "rarity": "uncommon",
+      "probability": 0.3,
+      "description": null
+    },
+    {
+      "name": "Good Prize",
+      "value": 1.2,
+      "rarity": "rare",
+      "probability": 0.15,
+      "description": null
+    },
+    {
+      "name": "Great Prize",
+      "value": 4.0,
+      "rarity": "epic",
+      "probability": 0.05,
+      "description": null
+    }
+  ]
+}

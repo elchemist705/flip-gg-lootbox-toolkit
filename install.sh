@@ -93,37 +93,21 @@ echo "✅ Default configuration created"
 echo "📝 Generating example configurations..."
 python3 -c "
 import sys
-sys.path.append('.')
-from lootbox_calculator import *
+import os
+sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
+from core.models import LootboxItem, Lootbox, RarityTier
 
 # Create budget example
 budget_items = [
-    LootboxItem('Small Prize', 0.15, RarityTier.COMMON, 0.50),
-    LootboxItem('Medium Prize', 0.45, RarityTier.UNCOMMON, 0.30),
-    LootboxItem('Good Prize', 1.20, RarityTier.RARE, 0.15),
-    LootboxItem('Great Prize', 4.00, RarityTier.EPIC, 0.05)
+    LootboxItem(name='Small Prize', value=0.15, rarity=RarityTier.COMMON, probability=0.50),
+    LootboxItem(name='Medium Prize', value=0.45, rarity=RarityTier.UNCOMMON, probability=0.30),
+    LootboxItem(name='Good Prize', value=1.20, rarity=RarityTier.RARE, probability=0.15),
+    LootboxItem(name='Great Prize', value=4.00, rarity=RarityTier.EPIC, probability=0.05)
 ]
-budget_box = Lootbox('Budget Box', 0.75, budget_items)
+budget_box = Lootbox(name='Budget Box', cost=0.75, items=budget_items, description='Budget-friendly lootbox with good player value')
 
-# Save budget example
-budget_dict = {
-    'name': budget_box.name,
-    'cost': budget_box.cost,
-    'description': 'Budget-friendly lootbox with good player value',
-    'items': [
-        {
-            'name': item.name,
-            'value': item.value,
-            'rarity': item.rarity.value,
-            'probability': item.probability,
-            'description': ''
-        } for item in budget_box.items
-    ]
-}
-
-import json
-with open('examples/budget_example.json', 'w') as f:
-    json.dump(budget_dict, f, indent=2)
+# Save budget example using built-in method
+budget_box.save_to_file('examples/budget_example.json')
 
 print('✅ Example configurations generated')
 "
