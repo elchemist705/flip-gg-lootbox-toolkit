@@ -84,3 +84,7 @@ dmypy.json
 # Local configuration overrides
 local_config.json
 .local/
+
+# Generated lootbox configurations (keep examples, ignore custom/generated ones)
+flip_gg_*.json
+!flip_gg_template.json
