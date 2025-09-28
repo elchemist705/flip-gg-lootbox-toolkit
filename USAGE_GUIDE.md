@@ -155,7 +155,7 @@ bin/lootbox_toolkit save --file whale_100.json
 
 ### Analysis Metrics:
 - **Expected Value**: Average value player receives
-- **House Edge**: Your profit margin (10-20% recommended)
+- **House Edge**: The profit margin (10-20% recommended)
 - **Break-even Chance**: % of players who profit
 - **Player Rating**: Value assessment (Excellent → Very Poor)
 - **Risk Level**: Volatility assessment

@@ -1,7 +1,7 @@
 # 🎲 Flip.gg Lootbox Design Guide
 
 ## Overview
-Complete probability calculation toolkit for designing optimal lootboxes for flip.gg within a $0.50-$4.00 cost range with a mix of high-value and low-value items.
+A complete probability calculation toolkit for designing optimal lootboxes for flip.gg within the $0.50-$4.00 cost range with a mix of high-value and low-value items.
 
 ## Quick Start
 
@@ -69,10 +69,10 @@ Interactive tool that lets you:
 ## Implementation on Flip.gg
 
 ### Step 1: Set Lootbox Cost
-Use the recommended cost from your generated configuration (e.g., $2.00 or $2.50).
+Use the recommended cost from the generated configuration (e.g., $2.00 or $2.50).
 
 ### Step 2: Configure Item Probabilities
-Use the exact probabilities from your JSON file:
+Use the exact probabilities from the JSON file:
 
 **Example for $2.00 box:**
 - Basic Item (42.896%): $0.30 value
@@ -92,14 +92,14 @@ Expected metrics:
 All configurations are:
 ✅ **Mathematically verified** through 25,000+ Monte Carlo simulations
 ✅ **Probability optimized** using advanced algorithms
-✅ **Cost-constrained** to your $0.50-$4.00 range
+✅ **Cost-constrained** to the $0.50-$4.00 range
 ✅ **Risk-assessed** for appropriate volatility levels
 
 ## Key Features Delivered
 
 1. **Mixed Value Distribution**: Perfect blend of high-value (jackpot) and low-value (consolation) items
 2. **Optimal Probabilities**: Mathematically calculated for target house edge
-3. **Multiple Cost Points**: Analysis across your entire $0.50-$4.00 range
+3. **Multiple Cost Points**: Analysis across the entire $0.50-$4.00 range
 4. **Risk Management**: Comprehensive variance and risk analysis
 5. **Player Value**: Optimized for good player experience while maintaining profitability
 
@@ -134,7 +134,7 @@ print(f'Expected Value: ${analysis[\"expected_value\"]:.4f}')
 ### Batch Analysis
 Create multiple configurations quickly by modifying the cost in `create_flip_gg_lootbox()` function.
 
-## Files in Your Toolkit
+## Files in the Toolkit
 
 ```
 lootbox_toolkit/
@@ -153,7 +153,11 @@ lootbox_toolkit/
 
 ## Success Metrics
 
+<<<<<<< HEAD
 Lootbox toolkit successfully delivers:
+=======
+The lootbox toolkit successfully delivers:
+>>>>>>> 629be0f (docs: removed personal language for a more professional tone)
 
 ✅ **Cost Range**: Full $0.50-$4.00 support  
 ✅ **High/Low Value Mix**: Jackpots up to 10x cost + consolation prizes
@@ -164,8 +168,12 @@ Lootbox toolkit successfully delivers:
 
 ## Next Steps
 
-1. **Choose your configuration**: Use `flip_gg_optimized.json` for the $2.50 box or generate custom ones
+1. **Choose a configuration**: Use `flip_gg_optimized.json` for the $2.50 box or generate custom ones
 2. **Implement on flip.gg**: Use the exact probabilities from the JSON file  
 3. **Monitor performance**: Track actual results vs. predicted metrics
 4. **Iterate**: Use the toolkit to adjust and optimize based on player feedback
 
+<<<<<<< HEAD
+=======
+The lootbox probability calculation toolkit is complete and ready for production use! 🚀
+>>>>>>> 629be0f (docs: removed personal language for a more professional tone)

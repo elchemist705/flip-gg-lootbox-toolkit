@@ -4,8 +4,8 @@ Expected Value Calculator for Lootbox Analysis
 Provides comprehensive mathematical analysis of lootbox configurations
 including expected value, variance, and risk metrics.
 """
-import numpy as np
-import pandas as pd
+import numpy as np # type: ignore
+import pandas as pd # type: ignore
 from typing import List, Dict, Tuple, Optional, Union
 import math
 import statistics
