@@ -2,7 +2,7 @@
 """
 Interactive Flip.gg Lootbox Designer
 
-Specifically designed for your requirements:
+Specifically designed for
 - Cost between $0.50 and $1000.00
 - Mix of high cases (high-value items) and low cases (low-value items)
 - Expanded item variety: 8-12 items per lootbox (up from 4-6)
