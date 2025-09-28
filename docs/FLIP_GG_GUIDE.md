@@ -1,7 +1,7 @@
 # 🎲 Flip.gg Lootbox Design Guide
 
 ## Overview
-You now have a complete probability calculation toolkit for designing optimal lootboxes for flip.gg within your $0.50-$4.00 cost range with a mix of high-value and low-value items.
+Complete probability calculation toolkit for designing optimal lootboxes for flip.gg within a $0.50-$4.00 cost range with a mix of high-value and low-value items.
 
 ## Quick Start
 
@@ -153,7 +153,7 @@ lootbox_toolkit/
 
 ## Success Metrics
 
-Your lootbox toolkit successfully delivers:
+Lootbox toolkit successfully delivers:
 
 ✅ **Cost Range**: Full $0.50-$4.00 support  
 ✅ **High/Low Value Mix**: Jackpots up to 10x cost + consolation prizes
@@ -169,4 +169,3 @@ Your lootbox toolkit successfully delivers:
 3. **Monitor performance**: Track actual results vs. predicted metrics
 4. **Iterate**: Use the toolkit to adjust and optimize based on player feedback
 
-Your lootbox probability calculation toolkit is complete and ready for production use! 🚀
