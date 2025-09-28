@@ -133,4 +133,3 @@ The toolkit now supports flip.gg lootbox design across the complete spectrum:
 - ✅ Player-friendly house edges (10-20%)
 - ✅ Ready-to-implement JSON configurations
 
-Your flip.gg lootbox toolkit is now enterprise-ready for any market segment!
